@@ -1,6 +1,6 @@
 "use server";
 
-export const uploadBlog = async(blogData) => {
+export const uploadBlog = async(blogData: any) => {
     try {
         const res = await fetch('http://localhost:3000/api/blog', {
             method: 'POST',
