@@ -9,7 +9,7 @@ const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <div className=' h-[68px] flex justify-between items-center px-4'>
+        <div className='border-b sticky top-0 z-10 bg-white h-[68px] flex justify-between items-center px-4'>
             <span className='capitalize'>{pathname.split("/")[1]}</span>
             <div className='flex gap-4'>
                 <SearchInput/>

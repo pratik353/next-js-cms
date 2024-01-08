@@ -20,7 +20,6 @@ export default function AuthLayout({
           <Sidebar/>
           <div className="w-full ml-[240px] 2xl:ml-[280px]">
             <Navbar/>
-            <Separator/>
             <main className="p-4">
               {children}
             </main>

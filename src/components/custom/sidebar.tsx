@@ -3,10 +3,10 @@ import { Separator } from '../ui/separator'
 import MenuItem from './sidebar-menu-item';
 
 const menuLinks = [
-    { label:"Home" , href:"blogs"},
-    { label:"Draft" , href:"draft"},
-    { label:"Rejected" , href:"rejected"},
-    { label:"Profile" , href:"profile"}
+    { label:"Home" , href:"/blogs"},
+    { label:"Draft" , href:"/draft"},
+    { label:"Rejected" , href:"/rejected"},
+    { label:"Profile" , href:"/profile"}
 ];
 
 const Sidebar = () => {

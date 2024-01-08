@@ -5,19 +5,15 @@ import React, { useState, useEffect, useRef } from "react";
 import ColorPlugin from 'editorjs-text-color-plugin' 
 
 import SimpleImage from "@/components/simple-image";
-import MarkerTool from "@/components/mark-tool";
 import ImageTool from '@editorjs/image';
 import HyperLink from 'editorjs-hyperlink';
 
 import dynamic from "next/dynamic";
 import { editorData } from "@/constants/data";
-import { uploadBlog } from "@/actions/actions";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-let Output = dynamic(() => import('editorjs-react-renderer'), {ssr: false});
 
-export default function Editor() {
+export default function Editor({data}: {data: any}) {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const ref = useRef<any>(null);
@@ -35,43 +31,6 @@ export default function Editor() {
     const publicId = data.public_id;
     return data.secure_url
   };
-
-
-  const data = {
-    "time": 1702989996427,
-    "blocks": [
-        {
-            "id": "6nADaHsfMN",
-            "type": "paragraph",
-            "data": {
-                "text": "Ddddddddddd<font style=\"color: rgb(255, 19, 0);\">ddddddddddddddddddd</font>"
-            }
-        },
-        {
-            "id": "53crHt1Ujc",
-            "type": "image",
-            "data": {
-                "file": {
-                    "url": "https://res.cloudinary.com/dzxnhfjsz/image/upload/v1702989983/cms-images/fvevw8pwuofdlfweyp19.png"
-                },
-                "caption": "",
-                "withBorder": false,
-                "stretched": false,
-                "withBackground": false
-            }
-        },
-        {
-            "id": "ImFG2XuXUh",
-            "type": "header",
-            "data": {
-                "text": "xxxxxxxxxxxxxxxxxxxxx",
-                "level": 2
-            }
-        }
-    ],
-    "version": "2.28.2"
-}
-  
 
   const initializeEditor = async () => {
     const EditorJS = (await import("@editorjs/editorjs")).default
@@ -182,7 +141,7 @@ export default function Editor() {
               }       
           },
         },
-        data: editorData
+        data: data && data
       });
       ref.current = editor
     }
@@ -214,7 +173,6 @@ export default function Editor() {
 
     if (ref.current) {
       ref.current.save().then(async(outputData: any) => {
-        // console.log(outputData);
         const bodyData = {
           "title": "First blog",  
           "authorName": "Pratik",
@@ -239,8 +197,6 @@ export default function Editor() {
           } catch (error) {
           console.log(error);
           }
-
-        // await uploadBlog(bodyData)
       })
     }
   }
@@ -248,7 +204,6 @@ export default function Editor() {
   return (
     <>
       <div ref={ref} draggable={false} className="" />
-      <button onClick={save}>Save</button>
       <div>
     </div>
 
