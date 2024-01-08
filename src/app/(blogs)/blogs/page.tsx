@@ -14,9 +14,7 @@ const BlogsPage = () => {
       </div>
       <div className='mt-3 grid grid-cols-4 gap-4'>
         {[1, 2, 3, 4, 5, 6, 7, 8].map( item => (
-          <Link key={item} href='/123'>
-            <BlogCard />
-          </Link>
+            <BlogCard key={item} />
         ))}
       </div>
       <div>
