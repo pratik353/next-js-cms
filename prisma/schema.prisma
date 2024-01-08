@@ -37,7 +37,6 @@ datasource db {
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 // model author {
 //   id    Int    @id @default(autoincrement())
 //   name  String @db.VarChar(191)
@@ -48,55 +47,55 @@ datasource db {
 // }
 
 model user {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(255)
-  email String @unique @db.VarChar(255)
-  password String @db.VarChar(255)
-  role Int 
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      Int
   createdAt DateTime @default(now())
-  blog blog[]
+  blog      blog[]
 }
 
 model blog {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(2048)
+  id        Int       @id @default(autoincrement())
+  title     String    @db.VarChar(2048)
   // description String?  @db.VarChar(2048)
-  slug      String   @db.VarChar(2048)
-  status String @db.VarChar(255) //active or inactive (soft deletion)
-  flags    Int  //states
-  comments String @db.VarChar(2048) //if and when blog is rejected
+  slug      String    @db.VarChar(2048)
+  status    String    @db.VarChar(255) //active or inactive (soft deletion)
+  flags     Int //states
+  comments  String    @db.VarChar(2048) //if and when blog is rejected
   // body        String   @db.VarChar(4096)
-  createdAt DateTime @default(now())
-  updatedAt DateTime? 
-  userId  Int
-  user    user?  @relation(fields: [userId], references: [id])
-  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  userId    Int
+  user      user?     @relation(fields: [userId], references: [id])
+
   // image       String[]
-  tags      tags[]
-  Block     Block[]
+  tags    tags[]
+  Block   Block[]
   comment comments[]
 }
 
 model comments {
-  id          Int     @id @default(autoincrement())
-  comment    String  @db.VarChar(2048)
-  blogId Int
-  blog blog @relation(fields: [blogId], references: [id])
+  id      Int    @id @default(autoincrement())
+  comment String @db.VarChar(2048)
+  blogId  Int
+  blog    blog   @relation(fields: [blogId], references: [id])
 }
 
 model tags {
-  id   Int    @id @default(autoincrement())
-  name String @db.VarChar(200)
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
   createdAt DateTime @default(now())
-  blog blog[]
+  blog      blog[]
 }
 
 model Block {
-  id        Int    @id @default(autoincrement())
+  id        Int   @id @default(autoincrement())
   sequence  Int
   blockData Json
   blogId    Int
-  blog      blog?  @relation(fields: [blogId], references: [id])
+  blog      blog? @relation(fields: [blogId], references: [id])
 }
 
 // model tagsonBlogs {
