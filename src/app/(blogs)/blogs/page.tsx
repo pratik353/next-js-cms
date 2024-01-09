@@ -9,14 +9,21 @@ import React from "react";
 
 const getData = async () => {
   //get all published blogs
-  const data = await prisma.user.findMany();
-  console.log(data);
+  const data = await prisma.blog.findMany({
+    where: {
+      flags : 1
+    },
+    include : {
+      Block: true
+    }
+  })
+  // console.log(data);
   return data;
 };
 
 export default async function page() {
-  const xyz = await getData();
-  console.log(xyz);
+  const data = await getData();
+  console.log(data);
 
   return (
     <div>
@@ -27,10 +34,10 @@ export default async function page() {
         </Button>
       </div>
       <div className="mt-3 grid grid-cols-4 gap-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+        {data.map((item) => (
           // {data.map((item) => (
-          <Link key={item} href="/123">
-            <BlogCard />
+          <Link key={item.id} href={`/blog/${item.id}`}>
+            <BlogCard {...item} />
           </Link>
         ))}
       </div>
