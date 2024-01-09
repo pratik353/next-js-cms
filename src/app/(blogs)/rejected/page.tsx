@@ -14,7 +14,9 @@ const RejectedBlogs = () => {
       </div>
       <div className='mt-3 grid grid-cols-4 gap-4'>
         {[1, 2, 3, 4, 5, 6, 7, 8].map( item => (
-            <BlogCard key={item}/>
+          <Link key={item} href={`/draft/${'123'}`}>
+            <BlogCard rejected={true}/>
+          </Link>
         ))}
       </div>
       <div>
