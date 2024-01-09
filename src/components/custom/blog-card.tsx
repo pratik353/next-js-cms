@@ -28,7 +28,7 @@ const BlogCard = ({title,comments,createdAt,flags,id,slug,status,updatedAt,userI
             <div className="py-2" >
                 <h4 className="text-lg font-bold">{title}</h4>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit, porro. Molestiae temporibus illo officia nostrum?</p>
-                <span className="mt-2 text-sm">Created At: {createdAt!.getDate()}/{createdAt!.getMonth()}/{createdAt!.getFullYear()} </span>
+                <span className="mt-2 text-sm">Created At: {createdAt?.getDate()}/{createdAt?.getMonth()}/{createdAt?.getFullYear()} </span>
             </div>
         </div>
     </Card>
