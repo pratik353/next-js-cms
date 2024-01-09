@@ -28,6 +28,7 @@ const AddNewBlog = () => {
     if (ref.current) {
       ref.current.save().then(async(outputData: any) => {
         const tagsValues = form.getValues().items;
+        console.log(outputData)
         addNewBlog({"tags": tagsValues, "blog": outputData})
       })
     };
