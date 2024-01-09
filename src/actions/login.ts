@@ -1,6 +1,5 @@
 "use server";
 
-export const login = (formData: any) =>{
-    console.log('formData', formData);
-    
-}
+export const login = async (formData: any) => {
+  console.log("formData", formData);
+};
