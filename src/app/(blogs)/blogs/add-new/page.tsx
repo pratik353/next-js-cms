@@ -1,10 +1,39 @@
+"use client";
+
+import { addNewBlog } from '@/actions/add-new-blog';
 import { BlogTags } from '@/components/custom/blog-tags'
 import HeaderText from '@/components/custom/header-text'
 import Editor from '@/components/editor-js/EditorJs'
 import { Button } from '@/components/ui/button'
 import React from 'react'
+import { useForm } from 'react-hook-form';
+import * as z from "zod"
+
+const FormSchema = z.object({
+  items: z.array(z.string()),
+})
 
 const AddNewBlog = () => {
+  
+  const ref = React.useRef<any>(null);
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    defaultValues: {
+      items: [],
+    },
+  });
+  
+  const handleSubmit = () => {
+    
+    if (ref.current) {
+      ref.current.save().then(async(outputData: any) => {
+        const tagsValues = form.getValues().items;
+        addNewBlog({"tags": tagsValues, "blog": outputData})
+      })
+    };
+
+  };
+
   return (
     <div className=''>
       <div className='sticky top-[68px] flex justify-between'>
@@ -12,23 +41,21 @@ const AddNewBlog = () => {
         <div className='flex gap-3'>
           <Button>Preview</Button>
           <Button>Draft</Button>
-          <Button>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </div>
       </div>
       <div className='mt-3 relative '>
-        <form action="">
-          <div className='flex gap-3 md:h-[25.5rem] 2xl:h-[46rem]'>
-            <div className='flex-1 border h-full overflow-y-auto'>
-              <Editor/>
-            </div>
-            <div className='relative'>
-              <div className='sticky top-[68px] w-[250px] border p-3'>
-                <h3 className='font-bold text-md mb-3'>Tags</h3>
-                <BlogTags/>
-              </div>
+        <div className='flex gap-3 md:h-[25.5rem] 2xl:h-[46rem]'>
+          <div className='flex-1 border h-full overflow-y-auto'>
+            <Editor editorRef={ref}/>
+          </div>
+          <div className='relative'>
+            <div className='sticky top-[68px] w-[250px] border p-3'>
+              <h3 className='font-bold text-md mb-3'>Tags</h3>
+              <BlogTags form={form} />
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   )

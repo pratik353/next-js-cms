@@ -307,4 +307,150 @@ export const editorData = {
         }
     ],
     "version": "2.28.2"
-} 
+}
+
+export const tags = [
+    {
+      "title": "Skin Types",
+      "points": [
+        "Dry Skin",
+        "Oily Skin",
+        "Combination Skin",
+        "Normal Skin",
+        "Sensitive Skin"
+      ]
+    },
+    {
+      "title": "Skin Concerns",
+      "points": [
+        "Acne",
+        "Aging",
+        "Hyperpigmentation",
+        "Dark Spots",
+        "Fine Lines and Wrinkles",
+        "Redness and Inflammation"
+      ]
+    },
+    {
+      "title": "Product Types",
+      "points": [
+        "Cleansers",
+        "Moisturizers",
+        "Serums",
+        "Toners",
+        "Sunscreens",
+        "Masks",
+        "Exfoliants"
+      ]
+    },
+    {
+      "title": "Ingredients",
+      "points": [
+        "Hyaluronic Acid",
+        "Vitamin C",
+        "Retinol",
+        "Niacinamide",
+        "Salicylic Acid",
+        "Glycolic Acid",
+        "Antioxidants"
+      ]
+    },
+    {
+      "title": "Routine and Regimen",
+      "points": [
+        "Morning Routine",
+        "Evening Routine",
+        "Weekly Routine",
+        "Skincare Order",
+        "Layering Products"
+      ]
+    },
+    {
+      "title": "DIY Skincare",
+      "points": [
+        "Homemade Masks",
+        "DIY Serums",
+        "Natural Ingredients",
+        "DIY Scrubs"
+      ]
+    },
+    {
+      "title": "Skin Health",
+      "points": [
+        "Diet and Skin",
+        "Hydration",
+        "Sleep",
+        "Stress Management",
+        "Exercise for Skin Health"
+      ]
+    },
+    {
+      "title": "Seasonal Skincare",
+      "points": [
+        "Winter Skincare",
+        "Summer Skincare",
+        "Fall Skincare",
+        "Spring Skincare"
+      ]
+    },
+    {
+      "title": "Product Reviews",
+      "points": [
+        "Brand Reviews",
+        "New Product Releases",
+        "Holy Grail Products",
+        "Disappointing Products"
+      ]
+    },
+    {
+      "title": "Skin Conditions",
+      "points": [
+        "Eczema",
+        "Psoriasis",
+        "Rosacea",
+        "Dermatitis"
+      ]
+    },
+    {
+      "title": "Men's Skincare",
+      "points": [
+        "Men's Grooming",
+        "Shaving Tips",
+        "Men's Skincare Routine"
+      ]
+    },
+    {
+      "title": "Skincare Myths",
+      "points": [
+        "Debunking Myths",
+        "Common Misconceptions",
+        "Skincare Facts"
+      ]
+    },
+    {
+      "title": "Beauty Tips",
+      "points": [
+        "Makeup Tips",
+        "Beauty Hacks",
+        "Skincare and Makeup Combination"
+      ]
+    },
+    {
+      "title": "Product Recommendations",
+      "points": [
+        "Budget-Friendly Products",
+        "High-End Products",
+        "Cruelty-Free Products",
+        "Vegan Skincare"
+      ]
+    },
+    {
+      "title": "Skin Cancer Awareness",
+      "points": [
+        "Sun Protection",
+        "Signs of Skin Cancer",
+        "Prevention Tips"
+      ]
+    }
+  ]
+  
