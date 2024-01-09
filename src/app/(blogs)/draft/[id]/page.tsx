@@ -29,7 +29,7 @@ const Blog = () => {
 
   const handleSubmit = () => {
     if (ref.current) {
-      ref.current.save().then(async(outputData: any) => {
+      ref?.current?.save().then(async(outputData: any) => {
         const tagsValues = form.getValues().items;
         const title = outputData.blocks[0].data.text;
         const titleWithoutTags = title.replace(/<\/?[^>]+(>|$)/g, '');
