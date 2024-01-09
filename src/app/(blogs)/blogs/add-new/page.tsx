@@ -1,6 +1,6 @@
 "use client";
 
-import { addNewBlog } from '@/actions/add-new-blog';
+import slugify from 'slugify';
 import { BlogTags } from '@/components/custom/blog-tags'
 import HeaderText from '@/components/custom/header-text'
 import Editor from '@/components/editor-js/EditorJs'
@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import * as z from "zod"
+import { addNewBlog } from '@/actions/add-new-blog';
 
 const FormSchema = z.object({
   items: z.array(z.string()),
@@ -28,8 +29,14 @@ const AddNewBlog = () => {
     if (ref.current) {
       ref.current.save().then(async(outputData: any) => {
         const tagsValues = form.getValues().items;
-        console.log(outputData)
-        addNewBlog({"tags": tagsValues, "blog": outputData})
+        const title = outputData.blocks[0];
+        const titleWithoutTags = title.replace(/<\/?[^>]+(>|$)/g, '');
+
+        const slug = slugify(titleWithoutTags, {
+          replacement: "-",
+          lower: true,
+        });
+        addNewBlog({"tags": tagsValues, "blog": outputData, "slug": slug, "title": titleWithoutTags})
       })
     };
 
@@ -46,7 +53,7 @@ const AddNewBlog = () => {
         </div>
       </div>
       <div className='mt-3 relative '>
-        <div className='flex gap-3 md:h-[25.5rem] 2xl:h-[46rem]'>
+        <div className='flex gap-3 h-[75vh]'>
           <div className='flex-1 border h-full overflow-y-auto'>
             <Editor editorRef={ref}/>
           </div>

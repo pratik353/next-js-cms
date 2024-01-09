@@ -1,8 +1,10 @@
 "use server";
 
 interface BlogFormData {
-    tags: String[];
-    blog: any
+    tags: string[];
+    blog: any,
+    slug: string,
+    title: string
 }
 
 export const addNewBlog = (formData: BlogFormData) => {

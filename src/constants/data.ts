@@ -207,13 +207,6 @@ export const editorData = {
             }
         },
         {
-            "id": "10nZm2bS03",
-            "type": "simpleImage",
-            "data": {
-                "url": ""
-            }
-        },
-        {
             "id": "GxUfS2LO2a",
             "type": "image",
             "data": {

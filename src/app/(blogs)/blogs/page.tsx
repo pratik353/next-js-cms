@@ -28,9 +28,11 @@ const getData = async () => {
           <Link href={"/blogs/add-new"}>Add new </Link>
         </Button>
       </div>
-      <div className="mt-3 grid grid-cols-4 gap-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-          <BlogCard key={item} />
+      <div className='mt-3 grid grid-cols-4 gap-4'>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map( item => (
+          <Link key={item} href={`/blogs/${item}`}>
+            <BlogCard />
+          </Link>
         ))}
       </div>
       <div>
