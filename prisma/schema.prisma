@@ -62,7 +62,7 @@ model blog {
   slug      String    @db.VarChar(2048)
   status    String    @db.VarChar(255) //active or inactive (soft deletion)
   flags     Int //states
-  comments  String    @default("none") @db.VarChar(2048) //if and when blog is rejected
+  // comments  String    @default("none") @db.VarChar(2048) //if and when blog is rejected
   createdAt DateTime  @default(now())
   updatedAt DateTime? @default(now())
   userId    Int

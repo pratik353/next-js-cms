@@ -6,8 +6,8 @@ import { cache } from "react";
 import prisma from "@/app/prismadb";
 import Link from "next/link";
 import React from "react";
-
-const getData = async () => {
+import { NextResponse } from "next/server";
+const getPublishedBlogs = async () => {
   //get all published blogs
   const data = await prisma.blog.findMany({
     where: {
@@ -18,11 +18,13 @@ const getData = async () => {
     }
   })
   // console.log(data);
-  return data;
+   return data;
+  // return NextResponse.json({ data }, { status: 200 });
+
 };
 
 export default async function page() {
-  const data = await getData();
+  const data = await getPublishedBlogs();
   console.log(data);
 
   return (

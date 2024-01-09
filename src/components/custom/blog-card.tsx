@@ -9,14 +9,14 @@ interface CardProps{
     slug: string,
     status: string,
     flags: number,
-    comments: string,
+    
     createdAt: Date | null,
     updatedAt: Date | null,
     userId: number,
     rejected?: boolean
 }
 
-const BlogCard = ({title,comments,createdAt,flags,id,slug,status,updatedAt,userId, rejected}:CardProps) => {
+const BlogCard = ({title,createdAt,flags,id,slug,status,updatedAt,userId, rejected}:CardProps) => {
   return (
     <Card>
         <div className="pt-3 px-3">
