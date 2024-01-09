@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
 
-const RejectedBlogs = () => {
+const RejectedBlogs = ({rejected}:{rejected: boolean}) => {
   return (
     <div>
       <div className='flex w-full justify-between'>
@@ -14,7 +14,9 @@ const RejectedBlogs = () => {
       </div>
       <div className='mt-3 grid grid-cols-4 gap-4'>
         {[1, 2, 3, 4, 5, 6, 7, 8].map( item => (
-            <BlogCard key={item}/>
+          <Link key={item} href={`/draft/${'123'}`}>
+            <BlogCard rejected={true}/>
+          </Link>
         ))}
       </div>
       <div>

@@ -13,10 +13,10 @@ import { editorData } from "@/constants/data";
 import { useRouter } from "next/navigation";
 
 
-export default function Editor({data}: {data: any}) {
+export default function Editor({data, editorRef }: any) {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
-  const ref = useRef<any>(null);
+  // const ref = useRef<any>(null);
 
   const handleUpload = async (file: File) => {
     const clUrl = `https://api.cloudinary.com/v1_1/dzxnhfjsz/image/upload`;
@@ -45,10 +45,10 @@ export default function Editor({data}: {data: any}) {
     const NestedList = (await import("@editorjs/nested-list")).default
     const Code = (await import("@editorjs/code")).default
 
-    if (ref.current) {
+    if (editorRef.current) {
       const editor = new EditorJS({
         autofocus: true,
-        holder: ref.current,
+        holder: editorRef.current,
         tools: {
           header: {
             class: Header,
@@ -118,7 +118,7 @@ export default function Editor({data}: {data: any}) {
               target: '_blank',
               rel: 'nofollow',
               availableTargets: ['_blank', '_self'],
-              availableRels: ['author', 'noreferrer'],
+              availableRels: ['author', 'noeditorReferrer'],
               validate: true,
             }
           },
@@ -143,7 +143,7 @@ export default function Editor({data}: {data: any}) {
         },
         data: data && data
       });
-      ref.current = editor
+      editorRef.current = editor
     }
   };
 
@@ -162,8 +162,8 @@ export default function Editor({data}: {data: any}) {
       init();
 
       return () => {
-        if (ref.current) {
-          ref.current.destroy();
+        if (editorRef.current) {
+          editorRef?.current?.destroy();
         }
       }
     }
@@ -171,39 +171,16 @@ export default function Editor({data}: {data: any}) {
 
   const save = async() => {
 
-    if (ref.current) {
-      ref.current.save().then(async(outputData: any) => {
-        const bodyData = {
-          "title": "First blog",  
-          "authorName": "Pratik",
-          "authorEmail":"pratik123@gmail.com",
-          "slug": "first-blog",
-          "tagName":["treatment","asdfghj"],
-          "block":{
-            ...outputData
-          }
-        };
-
-        try {
-          const res = await fetch('http://192.168.30.168:3000/api/blog', {
-              method: 'POST',
-              body: JSON.stringify(bodyData)
-          })  
-          const response = await res.json();
-          console.log();
-          
-          router.push(`/blog/${response.blog.id}`)
-  
-          } catch (error) {
-          console.log(error);
-          }
+    if (editorRef.current) {
+      editorRef.current.save().then(async(outputData: any) => {
+        console.log(outputData);
       })
     }
   }
 
   return (
     <>
-      <div ref={ref} draggable={false} className="" />
+      <div ref={editorRef} draggable={false} className="" />
       <div>
     </div>
 

@@ -35,8 +35,7 @@ export default async function page() {
       </div>
       <div className="mt-3 grid grid-cols-4 gap-4">
         {data.map((item) => (
-          // {data.map((item) => (
-          <Link key={item.id} href={`/blog/${item.id}`}>
+          <Link key={item.id} href={`/blogs/${item.id}`}>
             <BlogCard {...item} />
           </Link>
         ))}
