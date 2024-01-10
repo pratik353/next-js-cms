@@ -3,9 +3,23 @@ import QuoteIcon from '../QuoteIcon';
 import Image from 'next/image';
 import { editorData } from '@/constants/data';
 import { DateTime } from "luxon";
+import { number } from 'zod';
 
-const renderBlog = (data: any, index: number) => {
-    const parseData = JSON.parse(data);
+interface blogData {
+    id:number | undefined,
+    title: string,
+    slug:string,
+    status:string,
+    flags:number,
+    createdAt:Date,
+    updatedAt:Date,
+    userId:number,
+    tags: any[],
+    Block: any[]
+}
+
+    const renderBlog = (data: any, index: number) => {
+    const parseData = JSON.parse(JSON.parse(data).blockData);
 
     switch (parseData["type"]) {
         case 'header':
@@ -48,15 +62,18 @@ const renderBlog = (data: any, index: number) => {
     return parseData["type"];
 }
 
-const PreviewBlog = ({blogData=editorData}: any) => {
-    
+const PreviewBlog = (data : blogData) => {
+    console.log("blogss",data)
     return (
+        
         <div className='relative text-gray-700'>
             <div className='bg-[#f2f7ff] w-full z-[-1] h-[450px] absolute top-0'></div>  
             <div className='max-w-6xl mx-auto'>
                 {/* <p className='text-center pt-4'><span className='text-blue-400 underline'>Blogs</span> / Anti Ageing Treatment Approaches</p> */}
-                {blogData.blocks.map((block: any, index: number) => (
+                {data.Block.map((block: any, index: number) => (
+                   
                     <div key={block.id}>
+                       
                         {/* {index === 1 && (
                             <div className='w-2/4 mx-auto flex justify-center gap-6 pb-2'>
                                 <span className='flex items-center gap-1'>

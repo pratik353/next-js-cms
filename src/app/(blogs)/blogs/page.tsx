@@ -11,7 +11,10 @@ const getPublishedBlogs = async () => {
   //get all published blogs
   const data = await prisma.blog.findMany({
     where: {
-      flags : 1
+      AND: [
+        {flags: 1},
+        {status : 'active'}
+      ]
     },
     include : {
       Block: true

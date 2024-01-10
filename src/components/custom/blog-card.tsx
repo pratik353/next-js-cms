@@ -9,7 +9,6 @@ interface CardProps{
     slug: string,
     status: string,
     flags: number,
-    
     createdAt: Date | null,
     updatedAt: Date | null,
     userId: number,

@@ -60,32 +60,39 @@ model blog {
   id        Int       @id @default(autoincrement())
   title     String    @db.VarChar(2048)
   slug      String    @db.VarChar(2048)
-  status    String    @db.VarChar(255) //active or inactive (soft deletion)
+  status    String    @default("active") @db.VarChar(255) //active or inactive (soft deletion)
   flags     Int //states
   // comments  String    @default("none") @db.VarChar(2048) //if and when blog is rejected
   createdAt DateTime  @default(now())
   updatedAt DateTime? @default(now())
   userId    Int
-  user      user?     @relation(fields: [userId], references: [id])
+  user      user?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // image       String[]
   tags    tags[]
   Block   Block[]
-  comment comments[]
+  comment comments?
 }
 
 model comments {
   id      Int    @id @default(autoincrement())
   comment String @db.VarChar(2048)
-  blogId  Int
-  blog    blog   @relation(fields: [blogId], references: [id])
+  blogId  Int    @unique
+  blog    blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 }
 
 model tags {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(200)
-  createdAt DateTime @default(now())
-  blog      blog[]
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(200)
+  blog     blog[]
+  catId    Int
+  category category @relation(fields: [catId], references: [id], onDelete: Cascade)
+}
+
+model category {
+  id       Int    @id @default(autoincrement())
+  cat_name String @default("other") @db.VarChar(200)
+  tags     tags[]
 }
 
 model Block {
@@ -93,7 +100,7 @@ model Block {
   sequence  Int
   blockData Json
   blogId    Int
-  blog      blog? @relation(fields: [blogId], references: [id])
+  blog      blog? @relation(fields: [blogId], references: [id], onDelete: Cascade)
 }
 
 // model tagsonBlogs {

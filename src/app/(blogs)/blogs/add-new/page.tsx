@@ -30,13 +30,14 @@ const AddNewBlog = () => {
       ref?.current?.save().then(async(outputData: any) => {
         const tagsValues = form.getValues().items;
         const title = outputData.blocks[0];
-        const titleWithoutTags = title.replace(/<\/?[^>]+(>|$)/g, '');
+        const titleWithoutTags = title.data.text.replace(/<\/?[^>]+(>|$)/g, '');
+        console.log(titleWithoutTags)
 
         const slug = slugify(titleWithoutTags, {
           replacement: "-",
           lower: true,
         });
-        addNewBlog({"tags": tagsValues, "blog": outputData, "slug": slug, "title": titleWithoutTags})
+        addNewBlog({"tags": tagsValues, "blog": outputData, "slug": slug, "title": titleWithoutTags })
       })
     };
 
