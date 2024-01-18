@@ -79,6 +79,38 @@ export const addNewBlog = async (formData: any) => {
     },
   });
 
+// for draft/ rejected blogs
+//   const drafted_blog = await prisma.blog.upsert({
+//     where:{
+//         id : id
+//     },
+//     update:{
+//         title: formData.title,
+//         slug: formData.slug,
+//         status: formData.status,
+//         flags: formData.flag,
+//         userId: 1,
+//         tags: {
+//             connect: getTagsId.map((id) => ({
+//             id,
+//             })),
+//         },
+
+//     },
+//     create : {
+//         title: formData.title,
+//         slug: formData.slug,
+//         status: formData.status,
+//         flags: 2,
+//         userId: 1,
+//         tags: {
+//             connect: getTagsId.map((id) => ({
+//             id,
+//             })),
+//         },
+//    }
+// })
+
   allBlocks.forEach(async function (item: any, index: number) {
     console.log(item);
 
